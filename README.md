@@ -28,6 +28,7 @@ Follow these instructions to set up the project on your local machine for develo
 ## Features
 - **React**: A powerful JavaScript library for building user interfaces.
 - **Redux**: A predictable state container for JavaScript apps.
+- - **Automatic Token Refresh**: Persist and rehydrate Redux state with encryption to enhance security.
 - **Redux Persist with Encryption**: Persist and rehydrate Redux state with encryption to enhance security.
 - **JWT Secure Storage**: Store JWT access and refresh tokens securely in HTTP-only cookies.
 - **Firebase Authentication**: Enable login with Google and GitHub using Firebase Authentication.
@@ -36,6 +37,51 @@ Follow these instructions to set up the project on your local machine for develo
 - **React Router**: Declarative routing for React applications.
 - **Material-UI**: A popular React UI framework for building responsive and accessible web applications.
 - **Jest**: A delightful JavaScript testing framework for unit and integration tests.
+
+## Automatic Token Refresh
+To handle the expiration of access tokens, an interceptor is used to automatically refresh the token using a refresh token. This ensures that the user remains authenticated without requiring manual re-login. Below is the code implementation for the response interceptor:
+
+```javascript
+const responseInterceptor = axiosPrivate.interceptors.response.use(
+  response => response,
+  async (error) => {
+    const prevRequest = error?.config;
+    if (error?.response?.status === 406 && !prevRequest?.sent) {
+      try {
+        prevRequest.sent = true;
+        await axiosPublic.get('/users/public/getaccesstoken/', {
+          headers: { 'Content-Type': 'application/json' },
+          withCredentials: true
+        })
+        return axiosPrivate(prevRequest);
+
+      } catch (error) {
+        axiosPublic.get('/users/public/logout/', {
+          headers: { 'Content-Type': 'application/json' },
+          withCredentials: true
+        }).then((res) => {
+          localStorage.clear();
+          window.location.href = '/login';
+        }).catch((err) => {
+          localStorage.clear();
+          window.location.href = '/login';
+        })
+      }
+    }
+    return Promise.reject(error);
+  }
+);
+```
+
+### Explanation
+- **Interceptor Setup**: The `axiosPrivate` instance is configured with an interceptor to handle responses.
+- **Token Expiry Handling**: If a response returns a 406 status (indicating the access token has expired) and the request hasn't been marked as sent before, the interceptor will attempt to refresh the token.
+- **Refreshing the Token**: The interceptor sends a request to `/users/public/getaccesstoken/` to get a new access token. The `withCredentials` option is set to ensure that cookies (including the refresh token) are sent with the request.
+- **Retrying the Original Request**: After successfully obtaining a new access token, the original request is retried.
+- **Handling Refresh Failures**: If the refresh token request fails, the user is logged out by clearing local storage and redirecting to the login page.
+
+This approach ensures that the user's session is seamlessly maintained, enhancing the overall user experience by reducing interruptions due to token expiration.
+
 
 ## Project Structure
 ```
