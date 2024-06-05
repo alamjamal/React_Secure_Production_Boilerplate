@@ -9,12 +9,12 @@ import {
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBhxpJ8trwur_d1XL_6zV59muViUSRzw_8",
+  apiKey: "",
   authDomain: "alamjamaldotme.firebaseapp.com",
-  projectId: "alamjamaldotme",
+  projectId: "",
   storageBucket: "alamjamaldotme.appspot.com",
   messagingSenderId: "363777190647",
-  appId: "1:363777190647:web:7152d408e26914be8ec1f2",
+  appId: "",
   measurementId: "G-EK3T6KMDMW"
 };
 
