@@ -94,8 +94,9 @@ Follow these steps to set up the project on your local machine:
 
 ## Running the App
 To start the development server, run:
-```bash
+```
 npm start
+```
 
 Your React application should now be up and running. Open your browser and navigate to [http://localhost:3000](http://localhost:3000) to see the application in action.
 
@@ -114,7 +115,7 @@ Firebase Authentication is used to enable login with Google and GitHub. The inte
 ### Setting up Firebase Authentication
 
 1. Install Firebase:
-    ```bash
+    ```
     npm install firebase
     ```
 
@@ -180,6 +181,7 @@ Firebase Authentication is used to enable login with Google and GitHub. The inte
 Jest is used for testing the application. To run the tests, use the following command:
 ```bash
 npm test
+```
 ## Contributing
 
 We welcome contributions to improve this project. If you have suggestions, bug reports, or improvements, please create an issue or submit a pull request.
