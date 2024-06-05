@@ -9,6 +9,7 @@ This boilerplate serves as a foundational structure for building a robust and sc
 - [Installation](#installation)
 - [Configuration](#configuration)
 - [Running the App](#running-the-app)
+- [Automatic Token Refresh](#automatic-token-refresh)
 - [State Management](#state-management)
 - [Secure Cookie Management](#secure-cookie-management)
 - [Firebase Authentication](#firebase-authentication)
@@ -23,7 +24,10 @@ Follow these instructions to set up the project on your local machine for develo
 ### Prerequisites
 - Node.js (v14.x or later)
 - npm (v6.x or later)
-- Backend API
+- Backend API Clone
+  ```
+  (https://github.com/alamjamal/Nodejs_Firebase_Setup_Into_Existing_Flow.git)
+  ```
 
 ## Features
 - **React**: A powerful JavaScript library for building user interfaces.
