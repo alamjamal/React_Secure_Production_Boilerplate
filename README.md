@@ -28,7 +28,7 @@ Follow these instructions to set up the project on your local machine for develo
 ## Features
 - **React**: A powerful JavaScript library for building user interfaces.
 - **Redux**: A predictable state container for JavaScript apps.
-- - **Automatic Token Refresh**: Persist and rehydrate Redux state with encryption to enhance security.
+- **Automatic Token Refresh**
 - **Redux Persist with Encryption**: Persist and rehydrate Redux state with encryption to enhance security.
 - **JWT Secure Storage**: Store JWT access and refresh tokens securely in HTTP-only cookies.
 - **Firebase Authentication**: Enable login with Google and GitHub using Firebase Authentication.
